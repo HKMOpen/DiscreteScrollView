@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.yarolegovich.discretescrollview.sample.gallery.GalleryActivity;
+import com.yarolegovich.discretescrollview.sample.shop.MoviePoster;
 import com.yarolegovich.discretescrollview.sample.shop.ShopActivity;
 import com.yarolegovich.discretescrollview.sample.weather.WeatherActivity;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        findViewById(R.id.movie_demen).setOnClickListener(this);
         findViewById(R.id.preview_shop).setOnClickListener(this);
         findViewById(R.id.preview_weather).setOnClickListener(this);
         findViewById(R.id.preview_vertical).setOnClickListener(this);
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.movie_demen:
+                start(MoviePoster.class);
+                break;
             case R.id.preview_shop:
                 start(ShopActivity.class);
                 break;

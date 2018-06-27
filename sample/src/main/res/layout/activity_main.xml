@@ -20,6 +20,15 @@
         app:mpc_title="@string/card_title_preview">
 
         <com.yarolegovich.mp.MaterialRightIconPreference
+            android:id="@+id/movie_demen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mp_icon="@drawable/ic_shopping_black_24dp"
+            app:mp_icon_tint="@color/grayIconTint"
+            app:mp_title="Test movie poster" />
+
+
+        <com.yarolegovich.mp.MaterialRightIconPreference
             android:id="@+id/preview_shop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

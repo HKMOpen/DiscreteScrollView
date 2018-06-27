@@ -18,6 +18,10 @@
         </activity>
 
         <activity
+            android:name=".shop.MoviePoster"
+            android:screenOrientation="portrait"
+            android:theme="@style/ShopTheme" />
+        <activity
             android:name=".shop.ShopActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ShopTheme" />
@@ -27,8 +31,8 @@
             android:theme="@style/WeatherTheme" />
 
         <activity
-            android:theme="@style/GalleryTheme"
-            android:name=".gallery.GalleryActivity"/>
+            android:name=".gallery.GalleryActivity"
+            android:theme="@style/GalleryTheme" />
     </application>
 
 </manifest>

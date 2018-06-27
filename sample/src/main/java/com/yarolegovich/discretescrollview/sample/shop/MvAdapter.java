@@ -10,22 +10,22 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.yarolegovich.discretescrollview.sample.R;
-import com.yarolegovich.discretescrollview.sample.gallery.GalleryAdapter;
 
 import java.util.List;
+
 
 /**
  * Created by yarolegovich on 07.03.2017.
  */
 
-public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
+public class MvAdapter extends RecyclerView.Adapter<MvAdapter.ViewHolder> {
 
 
     private int itemwidth;
 
     private List<Item> data;
 
-    public ShopAdapter(List<Item> data) {
+    public MvAdapter(List<Item> data) {
         this.data = data;
     }
 
@@ -42,7 +42,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.item_shop_card, parent, false);
+        View v = inflater.inflate(R.layout.mv_card_2, parent, false);
      /*   ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                 itemwidth,
                 500);

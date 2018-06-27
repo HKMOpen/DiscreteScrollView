@@ -33,7 +33,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         Activity context = (Activity) recyclerView.getContext();
         Point windowDimensions = new Point();
         context.getWindowManager().getDefaultDisplay().getSize(windowDimensions);
-        itemHeight = Math.round(windowDimensions.y * 0.6f);
+        itemHeight = Math.round(windowDimensions.y * 0.2f);
     }
 
     @Override
