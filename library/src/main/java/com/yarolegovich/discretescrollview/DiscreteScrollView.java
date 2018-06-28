@@ -24,11 +24,13 @@ public class DiscreteScrollView extends RecyclerView {
 
     public static final int NO_POSITION = DiscreteScrollLayoutManager.NO_POSITION;
 
-    private static final int DEFAULT_ORIENTATION = Orientation.HORIZONTAL.ordinal();
+    private static final int DEFAULT_ORIENTATION = DSVOrientation.HORIZONTAL.ordinal();
 
     private DiscreteScrollLayoutManager layoutManager;
     private List<ScrollStateChangeListener> scrollStateChangeListeners;
     private List<OnItemChangedListener> onItemChangedListeners;
+
+    private boolean isOverScrollEnabled;
 
     public DiscreteScrollView(Context context) {
         super(context);
@@ -56,9 +58,11 @@ public class DiscreteScrollView extends RecyclerView {
             ta.recycle();
         }
 
+        isOverScrollEnabled = getOverScrollMode() != OVER_SCROLL_NEVER;
+
         layoutManager = new DiscreteScrollLayoutManager(
                 getContext(), new ScrollStateListener(),
-                Orientation.values()[orientation]);
+                DSVOrientation.values()[orientation]);
         setLayoutManager(layoutManager);
     }
 
@@ -117,12 +121,24 @@ public class DiscreteScrollView extends RecyclerView {
         layoutManager.setSlideOnFlingThreshold(threshold);
     }
 
-    public void setOrientation(Orientation orientation) {
+    public void setOrientation(DSVOrientation orientation) {
         layoutManager.setOrientation(orientation);
     }
 
     public void setOffscreenItems(int items) {
         layoutManager.setOffscreenItems(items);
+    }
+
+    public void setClampTransformProgressAfter(@IntRange(from = 1) int itemCount) {
+        if (itemCount <= 1) {
+            throw new IllegalArgumentException("must be >= 1");
+        }
+        layoutManager.setTransformClampItemCount(itemCount);
+    }
+
+    public void setOverScrollEnabled(boolean overScrollEnabled) {
+        isOverScrollEnabled = overScrollEnabled;
+        setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
     public void addScrollStateChangeListener(@NonNull ScrollStateChangeListener<?> scrollStateChangeListener) {
@@ -196,7 +212,9 @@ public class DiscreteScrollView extends RecyclerView {
 
         @Override
         public void onIsBoundReachedFlagChange(boolean isBoundReached) {
-            setOverScrollMode(isBoundReached ? OVER_SCROLL_ALWAYS : OVER_SCROLL_NEVER);
+            if (isOverScrollEnabled) {
+                setOverScrollMode(isBoundReached ? OVER_SCROLL_ALWAYS : OVER_SCROLL_NEVER);
+            }
         }
 
         @Override
@@ -233,9 +251,9 @@ public class DiscreteScrollView extends RecyclerView {
             int newIndex = layoutManager.getNextPosition();
             if (currentIndex != newIndex) {
                 notifyScroll(currentViewPosition,
-                        currentIndex, newIndex,
-                        getViewHolder(currentIndex),
-                        getViewHolder(newIndex));
+                    currentIndex, newIndex,
+                    getViewHolder(currentIndex),
+                    getViewHolder(newIndex));
             }
         }
 

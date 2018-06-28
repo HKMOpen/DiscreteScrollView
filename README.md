@@ -13,6 +13,12 @@ Add this into your dependencies block.
 compile 'com.hkm.ui:discrete-scrollview:1.5.0'
 ```
 
+## Reporting an issue
+
+If you are going to report an issue, I will greatly appreciate you including some code which I can run to see the issue. By doing so you maximize the chance that I will fix the problem. 
+
+By the way, before reporting a problem, try replacing DiscreteScrollView with a RecyclerView. If the problem is still present, it's likely somewhere in your code.
+
 ## Sample
 <a href="https://play.google.com/store/apps/details?id=com.yarolegovich.discretescrollview.sample"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" width="185" height="60"/></a><br>
 
@@ -45,10 +51,11 @@ scrollView.setAdapter(new YourAdapterImplementation());
 ```
 
 ### API
-#### Layout
+#### General
 ```java
-scrollView.setOrientation(Orientation o); //Sets an orientation of the view
+scrollView.setOrientation(DSVOrientation o); //Sets an orientation of the view
 scrollView.setOffscreenItems(count); //Reserve extra space equal to (childSize * count) on each side of the view
+scrollView.setOverScrollEnabled(enabled); //Can also be set using android:overScrollMode xml attribute
 ```
 #### Related to the current item:
 ```java
@@ -74,6 +81,10 @@ public interface DiscreteScrollItemTransformer {
      */
     void transformItem(View item, float position); 
 }
+```
+In the above example `view1Position == (currentlySelectedViewPosition - n)` and `view2Position == (currentlySelectedViewPosition + n)`, where `n` defaults to 1 and can be changed using the following API:
+```java
+scrollView.setClampTransformProgressAfter(n);
 ```
 Because scale transformation is the most common, I included a helper class - ScaleTransformer, here is how to use it:
 ```java

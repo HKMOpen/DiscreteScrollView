@@ -1,8 +1,6 @@
 package com.yarolegovich.discretescrollview.sample.shop;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -14,7 +12,7 @@ import android.widget.TextView;
 
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
-import com.yarolegovich.discretescrollview.Orientation;
+import com.yarolegovich.discretescrollview.DSVOrientation;
 import com.yarolegovich.discretescrollview.sample.DiscreteScrollViewOptions;
 import com.yarolegovich.discretescrollview.sample.R;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
@@ -51,7 +49,7 @@ public class ShopActivity extends AppCompatActivity implements DiscreteScrollVie
         shop = Shop.get();
         data = shop.getData();
         itemPicker = (DiscreteScrollView) findViewById(R.id.item_picker);
-        itemPicker.setOrientation(Orientation.HORIZONTAL);
+        itemPicker.setOrientation(DSVOrientation.HORIZONTAL);
         itemPicker.addOnItemChangedListener(this);
         ShopAdapter shopAdapter = new ShopAdapter(data);
         infiniteAdapter = InfiniteScrollAdapter.wrap(shopAdapter);

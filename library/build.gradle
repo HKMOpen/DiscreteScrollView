@@ -10,6 +10,8 @@ android {
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 }
 
