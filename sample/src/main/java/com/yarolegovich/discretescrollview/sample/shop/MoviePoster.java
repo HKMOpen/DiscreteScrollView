@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
-import com.yarolegovich.discretescrollview.Orientation;
+import com.yarolegovich.discretescrollview.DSVOrientation;
 import com.yarolegovich.discretescrollview.sample.ClearActivityTest;
 import com.yarolegovich.discretescrollview.sample.DiscreteScrollViewOptions;
 import com.yarolegovich.discretescrollview.sample.R;
@@ -43,7 +43,7 @@ public class MoviePoster extends AppCompatActivity implements DiscreteScrollView
         shop = Shop.get();
         data = shop.getData();
         itemPicker = (DiscreteScrollView) findViewById(R.id.item_picker);
-        itemPicker.setOrientation(Orientation.HORIZONTAL);
+        itemPicker.setOrientation(DSVOrientation.HORIZONTAL);
         itemPicker.addOnItemChangedListener(this);
         MvAdapter shopAdapter = new MvAdapter(data, this);
         infiniteAdapter = InfiniteScrollAdapter.wrap(shopAdapter);
