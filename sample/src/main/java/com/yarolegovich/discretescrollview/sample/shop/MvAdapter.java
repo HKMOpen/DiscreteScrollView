@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.yarolegovich.discretescrollview.sample.R;
+import com.yarolegovich.discretescrollview.sample.itemTouch;
 
 import java.util.List;
 
@@ -22,11 +23,13 @@ public class MvAdapter extends RecyclerView.Adapter<MvAdapter.ViewHolder> {
 
 
     private int itemwidth;
-
+    private itemTouch interaction;
     private List<Item> data;
 
-    public MvAdapter(List<Item> data) {
+    public MvAdapter(List<Item> data, itemTouch interact) {
         this.data = data;
+        this.interaction = interact;
+
     }
 
     @Override
@@ -53,10 +56,16 @@ public class MvAdapter extends RecyclerView.Adapter<MvAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         Glide.with(holder.itemView.getContext())
                 .load(data.get(position).getImage())
                 .into(holder.image);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (interaction != null) interaction.touch_at(position);
+            }
+        });
     }
 
     @Override

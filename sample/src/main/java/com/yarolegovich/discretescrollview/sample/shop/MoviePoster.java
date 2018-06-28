@@ -13,14 +13,16 @@ import android.widget.ImageView;
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
 import com.yarolegovich.discretescrollview.Orientation;
+import com.yarolegovich.discretescrollview.sample.ClearActivityTest;
 import com.yarolegovich.discretescrollview.sample.DiscreteScrollViewOptions;
 import com.yarolegovich.discretescrollview.sample.R;
+import com.yarolegovich.discretescrollview.sample.itemTouch;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 
 import java.util.List;
 
 public class MoviePoster extends AppCompatActivity implements DiscreteScrollView.OnItemChangedListener,
-        View.OnClickListener {
+        View.OnClickListener, itemTouch {
 
     private List<Item> data;
     private Shop shop;
@@ -43,7 +45,7 @@ public class MoviePoster extends AppCompatActivity implements DiscreteScrollView
         itemPicker = (DiscreteScrollView) findViewById(R.id.item_picker);
         itemPicker.setOrientation(Orientation.HORIZONTAL);
         itemPicker.addOnItemChangedListener(this);
-        MvAdapter shopAdapter = new MvAdapter(data);
+        MvAdapter shopAdapter = new MvAdapter(data, this);
         infiniteAdapter = InfiniteScrollAdapter.wrap(shopAdapter);
         itemPicker.setAdapter(shopAdapter);
         itemPicker.setItemTransitionTimeMillis(DiscreteScrollViewOptions.getTransitionTime());
@@ -61,12 +63,6 @@ public class MoviePoster extends AppCompatActivity implements DiscreteScrollView
         findViewById(R.id.btn_smooth_scroll).setOnClickListener(this);
         findViewById(R.id.btn_transition_time).setOnClickListener(this);
 
-        ehandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                itemPicker.setCurrentPosition(3);
-            }
-        }, 1000);
 
     }
 
@@ -94,9 +90,14 @@ public class MoviePoster extends AppCompatActivity implements DiscreteScrollView
         }
     }
 
+    @Override
+    public void touch_at(int item_num) {
+        ClearActivityTest.init_pos(MoviePoster.this, item_num);
+    }
+
     private void onItemChanged(Item item) {
-      //  currentItemName.setText(item.getName());
-     //   currentItemPrice.setText(item.getPrice());
+        //  currentItemName.setText(item.getName());
+        //   currentItemPrice.setText(item.getPrice());
         changeRateButtonState(item);
     }
 
@@ -119,4 +120,6 @@ public class MoviePoster extends AppCompatActivity implements DiscreteScrollView
     private void showUnsupportedSnackBar() {
         Snackbar.make(itemPicker, R.string.msg_unsupported_op, Snackbar.LENGTH_SHORT).show();
     }
+
+
 }

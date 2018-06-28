@@ -13,6 +13,7 @@ import com.yarolegovich.discretescrollview.transform.DiscreteScrollItemTransform
 import com.yarolegovich.discretescrollview.util.ScrollListenerAdapter;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 /**
@@ -26,7 +27,6 @@ public class DiscreteScrollView extends RecyclerView {
     private static final int DEFAULT_ORIENTATION = Orientation.HORIZONTAL.ordinal();
 
     private DiscreteScrollLayoutManager layoutManager;
-
     private List<ScrollStateChangeListener> scrollStateChangeListeners;
     private List<OnItemChangedListener> onItemChangedListeners;
 
@@ -172,8 +172,14 @@ public class DiscreteScrollView extends RecyclerView {
     }
 
     private void notifyCurrentItemChanged(ViewHolder holder, int current) {
-        for (OnItemChangedListener listener : onItemChangedListeners) {
-            listener.onCurrentItemChanged(holder, current);
+        try {
+            for (OnItemChangedListener listener : onItemChangedListeners) {
+                listener.onCurrentItemChanged(holder, current);
+            }
+        } catch (ConcurrentModificationException e) {
+            e.fillInStackTrace();
+        } catch (Exception e) {
+            e.fillInStackTrace();
         }
     }
 
@@ -227,9 +233,9 @@ public class DiscreteScrollView extends RecyclerView {
             int newIndex = layoutManager.getNextPosition();
             if (currentIndex != newIndex) {
                 notifyScroll(currentViewPosition,
-                    currentIndex, newIndex,
-                    getViewHolder(currentIndex),
-                    getViewHolder(newIndex));
+                        currentIndex, newIndex,
+                        getViewHolder(currentIndex),
+                        getViewHolder(newIndex));
             }
         }
 
