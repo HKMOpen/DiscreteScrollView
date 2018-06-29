@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.yarolegovich.discretescrollview.sample.gallery.GalleryActivity;
-import com.yarolegovich.discretescrollview.sample.shop.MoviePoster;
+import com.yarolegovich.discretescrollview.sample.Mv.MoviePoster;
 import com.yarolegovich.discretescrollview.sample.shop.ShopActivity;
 import com.yarolegovich.discretescrollview.sample.weather.WeatherActivity;
 

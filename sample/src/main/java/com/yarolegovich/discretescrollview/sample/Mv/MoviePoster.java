@@ -1,4 +1,4 @@
-package com.yarolegovich.discretescrollview.sample.shop;
+package com.yarolegovich.discretescrollview.sample.Mv;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +17,8 @@ import com.yarolegovich.discretescrollview.sample.ClearActivityTest;
 import com.yarolegovich.discretescrollview.sample.DiscreteScrollViewOptions;
 import com.yarolegovich.discretescrollview.sample.R;
 import com.yarolegovich.discretescrollview.sample.itemTouch;
+import com.yarolegovich.discretescrollview.sample.shop.Item;
+import com.yarolegovich.discretescrollview.sample.shop.Shop;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 
 import java.util.List;
@@ -62,8 +64,6 @@ public class MoviePoster extends AppCompatActivity implements DiscreteScrollView
         findViewById(R.id.home).setOnClickListener(this);
         findViewById(R.id.btn_smooth_scroll).setOnClickListener(this);
         findViewById(R.id.btn_transition_time).setOnClickListener(this);
-
-
     }
 
     @Override

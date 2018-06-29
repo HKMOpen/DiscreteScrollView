@@ -23,7 +23,7 @@
             android:theme="@style/ShopTheme" />
 
         <activity
-            android:name=".shop.MoviePoster"
+            android:name=".Mv.MoviePoster"
             android:screenOrientation="portrait"
             android:theme="@style/ShopTheme" />
         <activity

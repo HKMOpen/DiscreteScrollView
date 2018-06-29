@@ -1,4 +1,4 @@
-package com.yarolegovich.discretescrollview.sample.shop;
+package com.yarolegovich.discretescrollview.sample.Mv;
 
 import android.app.Activity;
 import android.graphics.Point;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.yarolegovich.discretescrollview.sample.R;
 import com.yarolegovich.discretescrollview.sample.itemTouch;
+import com.yarolegovich.discretescrollview.sample.shop.Item;
 
 import java.util.List;
 
